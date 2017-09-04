@@ -93,17 +93,21 @@
 
 
 
-<meta name="description" content="在vue中，我们在某个方法的函数内访问data对象中的数据a，直接this.a就可以，而不用this.data.a，因为this指向vue组件实例（vm实例），而vue组件实例代理了data对象的属性。代理是怎样实现的呢？（未完待续）">
+<meta name="description" content="不知道为什么网上的教程大都是centOS的。安装LAMP（Linux+Apache+Mysql+php）的顺序，linux肯定是最先安装，php要最后安装，因为php是依赖Apache和Mysql的，中间的顺序无所谓。 安装mysql我的linux版本Ubuntu 16.04.2(命令sudo lsb_release -a),在root目录下执行命令sudo apt-get install mys">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue组件实例怎样代理data对象的属性？">
-<meta property="og:url" content="http://yoursite.com/2017/08/23/vue组件实例怎样代理data对象的属性？/index.html">
+<meta property="og:title" content="阿里云服务器ubuntu下配置php运行环境">
+<meta property="og:url" content="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/index.html">
 <meta property="og:site_name" content="闫浩奇 の Blog">
-<meta property="og:description" content="在vue中，我们在某个方法的函数内访问data对象中的数据a，直接this.a就可以，而不用this.data.a，因为this指向vue组件实例（vm实例），而vue组件实例代理了data对象的属性。代理是怎样实现的呢？（未完待续）">
+<meta property="og:description" content="不知道为什么网上的教程大都是centOS的。安装LAMP（Linux+Apache+Mysql+php）的顺序，linux肯定是最先安装，php要最后安装，因为php是依赖Apache和Mysql的，中间的顺序无所谓。 安装mysql我的linux版本Ubuntu 16.04.2(命令sudo lsb_release -a),在root目录下执行命令sudo apt-get install mys">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-30T04:44:21.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照%202017-09-01%20下午2.01.22.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照%202017-09-01%20下午1.58.19.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照%202017-09-01%20下午2.31.03.png">
+<meta property="og:updated_time" content="2017-09-01T08:15:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue组件实例怎样代理data对象的属性？">
-<meta name="twitter:description" content="在vue中，我们在某个方法的函数内访问data对象中的数据a，直接this.a就可以，而不用this.data.a，因为this指向vue组件实例（vm实例），而vue组件实例代理了data对象的属性。代理是怎样实现的呢？（未完待续）">
+<meta name="twitter:title" content="阿里云服务器ubuntu下配置php运行环境">
+<meta name="twitter:description" content="不知道为什么网上的教程大都是centOS的。安装LAMP（Linux+Apache+Mysql+php）的顺序，linux肯定是最先安装，php要最后安装，因为php是依赖Apache和Mysql的，中间的顺序无所谓。 安装mysql我的linux版本Ubuntu 16.04.2(命令sudo lsb_release -a),在root目录下执行命令sudo apt-get install mys">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照%202017-09-01%20下午2.01.22.png">
 
 
 
@@ -131,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/23/vue组件实例怎样代理data对象的属性？/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/"/>
 
 
 
 
 
-  <title>vue组件实例怎样代理data对象的属性？ | 闫浩奇 の Blog</title>
+  <title>阿里云服务器ubuntu下配置php运行环境 | 闫浩奇 の Blog</title>
   
 
 
@@ -279,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/23/vue组件实例怎样代理data对象的属性？/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/01/阿里云服务器ubuntu下配置php运行环境/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="闫浩奇">
@@ -296,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">vue组件实例怎样代理data对象的属性？</h1>
+          <h1 class="post-title" itemprop="name headline">阿里云服务器ubuntu下配置php运行环境</h1>
         
 
         <div class="post-meta">
@@ -308,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T16:48:21+08:00">
-                2017-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T13:15:15+08:00">
+                2017-09-01
               </time>
             
 
@@ -343,7 +347,13 @@
       
 
       
-        <p>在vue中，我们在某个方法的函数内访问data对象中的数据a，直接<code>this.a</code>就可以，而不用<code>this.data.a</code>，因为this指向vue组件实例（vm实例），而vue组件实例<code>代理</code>了data对象的属性。代理是怎样实现的呢？（未完待续）</p>
+        <p>不知道为什么网上的教程大都是centOS的。安装LAMP（Linux+Apache+Mysql+php）的顺序，linux肯定是最先安装，php要最后安装，因为php是依赖Apache和Mysql的，中间的顺序无所谓。</p>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>我的linux版本Ubuntu 16.04.2(<code>命令sudo lsb_release -a</code>),在root目录下执行命令<code>sudo apt-get install mysql-server</code>安装mysql，我安装时候出现如下问题<br><img src="/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照 2017-09-01 下午2.01.22.png" alt=""><br>按照提示执行<code>apt-get update</code>，然后再执行<code>sudo apt-get install mysql-server</code>重新安装，安装过程中会提示设置密码<br><img src="/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照 2017-09-01 下午1.58.19.png" alt=""><br>安装完成后执行<code>sudo netstat -tap | grep mysql</code>查看服务(netstat命令显示网络相关信息，可参看<code>http://www.cnblogs.com/ggjucheng/archive/2012/01/08/2316661.html</code>)，显示监听的端口即表示安装成功。<br><img src="/2017/09/01/阿里云服务器ubuntu下配置php运行环境/屏幕快照 2017-09-01 下午2.31.03.png" alt=""></p>
+<h3 id="安装Apache2"><a href="#安装Apache2" class="headerlink" title="安装Apache2"></a>安装Apache2</h3><p>在root目录下执行命令<code>sudo apt-get install apache2</code>,命令<code>apachectl -v</code>查看是否安装成功，我的提示<code>Server version: Apache/2.4.18 (Ubuntu)</code>，安装成功。</p>
+<h3 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h3><p>ubuntu 16.04默认自带了php7，所以到这一步就不用装了。一般教程到这一步会让装php5，但执行命令<code>sudo apt-get install php5 libapache2-mod-php5</code>后提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Package php5 is not available, but is referred to by another package.</div><div class="line">This may mean that the package is missing, has been obsoleted, or</div><div class="line">is only available from another source</div></pre></td></tr></table></figure></p>
+<p>就是这个原因。如果装php5参看<code>http://blog.csdn.net/u011511945/article/details/51379480</code>。执行命令<code>php -v</code>会提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">The program &apos;php&apos; can be found in the following packages:</div><div class="line"> * php7.0-cli</div><div class="line"> * hhvm</div></pre></td></tr></table></figure></p>
+<p> 安装这个package，<code>sudo apt-get install php7.0-cli</code>安装php7，安装完毕后<code>php -v</code>可以查看到php版本的提示。</p>
+<h3 id="检验"><a href="#检验" class="headerlink" title="检验"></a>检验</h3><p>此时LAMP安装完毕，<code>/root/var</code>目录下回多一个<code>www</code>文件夹</p>
 
       
     </div>
@@ -380,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/23/vue-data/" rel="next" title="Vue组件中data为什么是函数？">
-                <i class="fa fa-chevron-left"></i> Vue组件中data为什么是函数？
+              <a href="/2017/09/01/mac安装mysql/" rel="next" title="mac安装mysql">
+                <i class="fa fa-chevron-left"></i> mac安装mysql
               </a>
             
           </div>
@@ -390,8 +400,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/27/路在何方/" rel="prev" title="路在何方？">
-                路在何方？ <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/04/阿里云ECS服务器ubuntu16-04-2安装图形界面远程控制/" rel="prev" title="阿里云ECS服务器ubuntu16.04.2安装图形界面远程控制">
+                阿里云ECS服务器ubuntu16.04.2安装图形界面远程控制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -440,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/test.png"
@@ -485,6 +504,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mysql"><span class="nav-number">1.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Apache2"><span class="nav-number">2.</span> <span class="nav-text">安装Apache2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php"><span class="nav-number">3.</span> <span class="nav-text">安装php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检验"><span class="nav-number">4.</span> <span class="nav-text">检验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -96,17 +96,17 @@
 <meta name="description" content="效果图 需求场景做公司后台项目，后台返回数据展示在页面展示，数据量很大，所以要采用分页，点击不同页码，ajax post当前页码以及其它必要信息给后台，返回该页码对应的数据再动态展示到页面，实现分页局部刷新。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通用分页-基于bootstrap和jQuery">
-<meta property="og:url" content="http://yoursite.com/2017/08/07/pagination-bootstrap/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/index.html">
 <meta property="og:site_name" content="闫浩奇 の Blog">
 <meta property="og:description" content="效果图 需求场景做公司后台项目，后台返回数据展示在页面展示，数据量很大，所以要采用分页，点击不同页码，ajax post当前页码以及其它必要信息给后台，返回该页码对应的数据再动态展示到页面，实现分页局部刷新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2017/08/07/pagination-bootstrap/pagination1.png">
-<meta property="og:image" content="http://yoursite.com/2017/08/07/pagination-bootstrap/pagination2.png">
-<meta property="og:updated_time" content="2017-08-07T10:26:15.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/pagination1.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/pagination2.png">
+<meta property="og:updated_time" content="2017-09-01T03:04:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通用分页-基于bootstrap和jQuery">
 <meta name="twitter:description" content="效果图 需求场景做公司后台项目，后台返回数据展示在页面展示，数据量很大，所以要采用分页，点击不同页码，ajax post当前页码以及其它必要信息给后台，返回该页码对应的数据再动态展示到页面，实现分页局部刷新。">
-<meta name="twitter:image" content="http://yoursite.com/2017/08/07/pagination-bootstrap/pagination1.png">
+<meta name="twitter:image" content="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/pagination1.png">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/07/pagination-bootstrap/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/"/>
 
 
 
@@ -282,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/pagination-bootstrap/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/07/通用分页-基于bootstrap和jQuery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="闫浩奇">
@@ -346,7 +346,7 @@
       
 
       
-        <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/2017/08/07/pagination-bootstrap/pagination1.png" alt=""><br><img src="/2017/08/07/pagination-bootstrap/pagination2.png" alt=""></p>
+        <h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><p><img src="/2017/08/07/通用分页-基于bootstrap和jQuery/pagination1.png" alt=""><br><img src="/2017/08/07/通用分页-基于bootstrap和jQuery/pagination2.png" alt=""></p>
 <h3 id="需求场景"><a href="#需求场景" class="headerlink" title="需求场景"></a>需求场景</h3><p>做公司后台项目，后台返回数据展示在页面展示，数据量很大，所以要采用分页，点击不同页码，ajax post当前页码以及其它必要信息给后台，返回该页码对应的数据再动态展示到页面，实现分页局部刷新。<br><a id="more"></a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>用一个div作为容器，通过配置该div的属性用js来动态生成需要的分页。在需要用到分页的地方，只需要写这样一个div标签就OK了。像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;test&quot; pagination=&quot;p-new&quot; pagenumber=&quot;5&quot; totalnumber=&quot;15&quot; paginationmax=&quot;10&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>配置的属性包括：分页的总页数、分页显示的页数、当前所在页码。分页所需要的html元素<br>用js动态生成，样式则采用bootstrap提供的分页的基础样式。bootstrap提供的分页的基础样式代码可以生成一个静态的分页：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&quot;pagination&quot;&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;&amp;laquo;&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;1&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;2&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li class=&quot;active&quot;&gt;&lt;a href=&quot;#&quot;&gt;3&lt;/a&gt;&lt;/li&gt;</div><div class="line">    &lt;li class=&quot;disabled&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;raquo;&lt;/a&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
@@ -404,7 +404,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/08/vue2-koa2/" rel="prev" title="Vue2+Koa2+MySQL全栈开发小案例todolist">
+              <a href="/2017/08/08/Vue2+Koa2+MySQL全栈开发小案例todolist/" rel="prev" title="Vue2+Koa2+MySQL全栈开发小案例todolist">
                 Vue2+Koa2+MySQL全栈开发小案例todolist <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -479,7 +479,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
