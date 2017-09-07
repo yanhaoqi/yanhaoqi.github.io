@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="不用mac自带的apache和php,安装自己想要的版本。配置过程一直采坑，需要有闲时间和好的心理素质才行，哈哈，因为网上很教程都有纰漏之处，所以先把采坑无数后发现的个人认为最好的一个教程链接放在这里https://github.com/nodejh/nodejh.github.io/issues/25下面记录我的采坑过程。 安装mysql官网https://www.mysql.com/downl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac配置php7运行环境">
+<meta property="og:url" content="http://yoursite.com/2017/09/01/mac配置php7运行环境/index.html">
+<meta property="og:site_name" content="闫浩奇 の Blog">
+<meta property="og:description" content="不用mac自带的apache和php,安装自己想要的版本。配置过程一直采坑，需要有闲时间和好的心理素质才行，哈哈，因为网上很教程都有纰漏之处，所以先把采坑无数后发现的个人认为最好的一个教程链接放在这里https://github.com/nodejh/nodejh.github.io/issues/25下面记录我的采坑过程。 安装mysql官网https://www.mysql.com/downl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/mac配置php7运行环境/屏幕快照%202017-09-07%20下午4.57.36.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/mac配置php7运行环境/屏幕快照%202017-09-07%20下午5.32.28.png">
+<meta property="og:image" content="http://yoursite.com/2017/09/01/mac配置php7运行环境/屏幕快照%202017-09-07%20下午5.36.30.png">
+<meta property="og:updated_time" content="2017-09-07T09:48:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac配置php7运行环境">
+<meta name="twitter:description" content="不用mac自带的apache和php,安装自己想要的版本。配置过程一直采坑，需要有闲时间和好的心理素质才行，哈哈，因为网上很教程都有纰漏之处，所以先把采坑无数后发现的个人认为最好的一个教程链接放在这里https://github.com/nodejh/nodejh.github.io/issues/25下面记录我的采坑过程。 安装mysql官网https://www.mysql.com/downl">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/01/mac配置php7运行环境/屏幕快照%202017-09-07%20下午4.57.36.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/01/mac配置php7运行环境/"/>
+
+
+
+
+
+  <title>mac配置php7运行环境 | 闫浩奇 の Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e21112ff973b5a3eaa92de69930f064e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">闫浩奇 の Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">愿你出走半生，归来仍是少年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            全部
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/01/mac配置php7运行环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="闫浩奇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/test.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="闫浩奇 の Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mac配置php7运行环境</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T11:09:48+08:00">
+                2017-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>不用mac自带的apache和php,安装自己想要的版本。配置过程一直采坑，需要有闲时间和好的心理素质才行，哈哈，因为网上很教程都有纰漏之处，所以先把采坑无数后发现的个人认为最好的一个教程链接放在这里<code>https://github.com/nodejh/nodejh.github.io/issues/25</code>下面记录我的采坑过程。</p>
+<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>官网<code>https://www.mysql.com/downloads/</code>下载mysql，有问题百度。下载后安装，安装过程中会有一个临时密码的提示，要注意保存一下，后面会用到。安装完毕进入<code>系统偏好设置</code>在最下面找到mysql图标并打开，点击<code>Start MySQL Server</code>启动mysql。命令行cd到<code>/usr/local/mysql/bin</code>，分别执行<code>alias mysql=/usr/local/mysql/bin/mysql</code>和<code>alias mysqladmin=/usr/local/mysql/bin/mysqladmin</code>,这两条命令是为了方便直接打开 iTerm 就可以运行mysql命令，而不是必须进入mysql安装目录才能运行。接下来，重置密码。执行命令<code>mysqladmin -u root -p password ***</code><em>*</em>是你的新密码。回车后提示输入密码，此时数次刚刚保存的临时密码，我的是)6m1d/m&lt;joVi。此时提示<code>mysqladmin: [Warning] Using a password on the command line interface can be insecure.Warning: Since password will be sent to server in plain text, use ssl connection to ensure password safety.</code>说明已经重置密码成功。我在这里浪费了很多时间，以为这是错误提示，其实已经ok了。</p>
+<a id="more"></a>
+<p>登录mysql。命令<code>mysql -u root -p</code>,然后输入刚刚重置的密码。然后登录成功会跳出提示信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 1032</div><div class="line">Server version: 5.7.19 MySQL Community Server (GPL)</div><div class="line"></div><div class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</div><div class="line"></div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line"></div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div></pre></td></tr></table></figure></p>
+<p>大意是说sql命令以;结尾，当前mysql版本是5.7.19。另外我们也可以通过sql命令<code>select version();</code>来查看版本。用<code>exit;</code>退出登录。安装完毕。</p>
+<h3 id="apache使用mac自带的"><a href="#apache使用mac自带的" class="headerlink" title="apache使用mac自带的"></a>apache使用mac自带的</h3><p>(开始的时候想用mac自带apache来着，后来和配置php7时候各种问题，放弃了使用mac自带apache)<br>基本用法的命令如下：<br><code>apachectl -v</code>查看版本，提示<code>Server version: Apache/2.4.25 (Unix)</code><br><code>sudo apachectl start</code>启动<br><code>sudo spachectl stop</code>停止<br><code>sudo apachectl restart</code>重启<br>相关目录：<br>apache日志<code>/private/var/log/apache2/error_log</code><br>apache配置主文件<code>/etc/apache2/httpd.conf</code><br>apache的vhost配置<code>/etc/apache2/extra/httpd-vhost.conf</code></p>
+<h3 id="安装php7-0"><a href="#安装php7-0" class="headerlink" title="安装php7.0"></a>安装php7.0</h3><p>参考博客<code>http://www.cnblogs.com/redirect/p/6131751.html</code><br>添加brew的php扩展库(mac上没有php的包，需要绑定其他人的git仓库,命令brew tap github_user/repo),执行如下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">brew update</div><div class="line">brew tap homebrew/dupes</div><div class="line">brew tap homebrew/php</div></pre></td></tr></table></figure></p>
+<p>可以使用<code>brew options php70</code>来查看安装php的选项。注意如果使用apache作为web server，安装php命令要加<code>--with-apache</code>选项，如果使用nginx作为web server，安装php命令要加<code>--with-fpm</code>选项，我的安装命令和选项<code>brew install php70 --with-apache --width-apxs2 --with-gmp --with-imap --with-tidy --with-debug</code>,然后我按照教程<code>http://www.cnblogs.com/redirect/p/6131751.html</code>上执行<code>brew link php70</code>开启php7.0的进程，但是查看<code>php -v</code>提示版本还是php5.6，执行<code>brew unlink php56</code>来关闭php5.6的进程但是报错提示<code>Error: No such keg: /usr/local/Cellar/php56</code>,反复试了很多次耽误了时间，然后我查其他资料，执行<code>brew install php-version</code>安装了<code>php-version</code>来切换php版本，php-version是一个帮助管理从brew安装的php版本切换的工具。安装完执行<code>php-veision 7.0.22</code>切换版本，然后<code>php -v</code>版本果然切换到php7.0.22了。<br>下面开始修改apache配置文件。又遇见很耗时的一个坑。<br>按照上面的教程，打开apache配置文件<code>sudo vi /etc/apache2/httpd.conf</code>,不加<code>sudo</code>权限不够没办法修改，注释(前面加#)掉<code>LoadModule php5_module libexec/apache2/libphp5.so</code>和<code>Include /private/etc/apache2/other/*.conf</code>两句，然后加上<code>LoadModule php7_module /usr/local/opt/php70/libexec/apache2/libphp7.so</code>这句，注意，libphp7.so的地址是对应自己电脑文件所在的地址，于是我去检查下我的libphp7.so文件是不是上面命令中的地址。结果发现<code>/usr/local/opt/php70/</code>下并没有<code>libphp7</code>目录，搞了半天不知道怎么整，于是<code>brew uninstall php7.0.22</code>卸载php7.0，卸载后<code>/usr/local/opt/</code>下面没有了<code>php70</code>文件夹，然后重新安装php7.0，并且又加了一个选项<code>--httpd24</code>,因为看其他教程里有加。<code>brew install php70 --with-apxs2  --with-apache --with-gmp --with-imap --with-tidy --with-debug --with-httpd24</code>，然后会提示如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/usr/local/Cellar/php70/7.0.22_14 --localstatedir=/usr/local/var --sysconfdir=/usr/local/etc/php/7.0 --with-config-file-path=/usr/local/etc/php/7.0 --with-config-file-scan-dir=/us</div><div class="line">Last 15 lines from /Users/yanhaoqi/Library/Logs/Homebrew/php70/01.configure:</div><div class="line">checking for Kerberos support... /usr</div><div class="line">checking whether to use system default cipher list instead of hardcoded value... no</div><div class="line">checking for krb5-config... /usr/bin/krb5-config</div><div class="line">checking for RAND_egd... no</div><div class="line">checking for pkg-config... no</div><div class="line">checking for OpenSSL version... &gt;= 0.9.8</div><div class="line">checking for CRYPTO_free in -lcrypto... yes</div><div class="line">checking for SSL_CTX_set_ssl_version in -lssl... yes</div><div class="line">checking for PCRE library to use... bundled</div><div class="line">checking whether to enable PCRE JIT functionality... yes</div><div class="line">checking whether to enable the SQLite3 extension... yes</div><div class="line">checking bundled sqlite3 library... yes</div><div class="line">checking for ZLIB support... yes</div><div class="line">checking if the location of ZLIB install directory is defined... no</div><div class="line">configure: error: Cannot find libz</div></pre></td></tr></table></figure></p>
+<p>其实前面最开始安装php7的时候记得也有这个提示，当时也没有在意。这时候执行<code>php -v</code>提示版本是<code>php5.6</code>，执行<code>php-version</code>提示<code>Sorry, but you do not seem to have any PHP versions installed.</code>,折腾半天后来查到资料，需要执行<code>xcode-select --install</code>,然后按照提示去安装，安装完毕后再重新装php7.0,<code>brew install php70 --with-apxs2  --with-apache --with-gmp --with-imap --with-tidy --with-debug --with-httpd24</code>,这次没有提示<code>configure: error: Cannot find libz</code>,然后查看版本是7.0，<code>php-version</code>也提示<code>7.0.22</code>,并且找到了<code>/usr/local/opt/php70/libexec/apache2/libphp7.so</code>文件。<br>ok,继续apache配置文件。<br>注释完上面所说的两句话后，加上如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">LoadModule php7_module /usr/local/opt/php70/libexec/apache2/libphp7.so</div><div class="line"> </div><div class="line">&lt;FilesMatch .php$&gt;</div><div class="line">    SetHandler application/x-httpd-php</div><div class="line">&lt;/FilesMatch&gt;</div><div class="line"> </div><div class="line">&lt;IfModule php7_module&gt;</div><div class="line">    AddType application/x-httpd-php .php</div><div class="line">    AddType application/x-httpd-php-source .phps</div><div class="line">    &lt;IfModule dir_module&gt;</div><div class="line">        DirectoryIndex index.html index.php</div><div class="line">    &lt;/IfModule&gt;</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
+<p>在<code>#ServerName www.example.com:80</code>后面加上<code>ServerName localhost:80</code>，否则下面重启apache的时候回报错提示<code>AH00558: httpd: Could not reliably determine the server&#39;s fully qualified domain name, using ::1. Set the &#39;ServerName&#39; directive globally to suppress this message</code><br>这是个更大的坑。我卡在这里将近两天，各种博客资料查询各种尝试。曲折过程已经忘记，现在只记录下结果。<br>我在上面写apache用mac自带的，版本是<code>Apache/2.4.25 (Unix)</code>，但是后面经过我安装php7的各种折腾后，记不清在什么时候我通过brew安装了<code>Apache/2.4.27</code>我想执行<code>brew uninstall httpd24</code>卸载掉但是提示<code>Refusing to uninstall /usr/local/Cellar/httpd24/2.4.27 because it is required by php70 7.0.22_14, which is currently installed.</code>，php7引用了Apache/2.4.27。而且，brew安装的Apache/2.4.27，配置文件所在目录<code>/usr/local/etc/apache2/2.4/httpd.conf</code>，其编译安装的目录<code>/usr/local/Cellar/httpd24/2.4.27</code>。oh my god!!!上面修改apache配置弄了这么长时间，配置的文件根本就不是正确的文件！<br>apache配置的正确姿势<br>执行命令使用管理员权限为通过brew安装的apache配置为自动启动。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo cp -v  /usr/local/Cellar/httpd24/2.4.27/homebrew.mxcl.httpd24.plist /Library/LaunchDaemons</div><div class="line">sudo chown -v root:wheel /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist</div><div class="line">sudo chmod -v 644 /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist</div><div class="line">sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.httpd24.plist</div></pre></td></tr></table></figure></p>
+<p>我的apache编译安装路径是<code>/usr/local/Cellar/httpd24/2.4.27</code>，如果你的路径不是这个，自行替换就好了。<br>此时浏览器访问<code>localhost</code>将会看到<br><img src="/2017/09/01/mac配置php7运行环境/屏幕快照 2017-09-07 下午4.57.36.png" alt=""><br>可以通过<code>ps -aef | grep httpd</code>命令查看apache服务是否启动，如果apache正在运行会看到一些http进程。</p>
+<p><code>sudo vi /usr/local/etc/apache2/2.4/httpd.conf</code></p>
+<h4 id="修改php模块配置及apache端口"><a href="#修改php模块配置及apache端口" class="headerlink" title="修改php模块配置及apache端口"></a>修改php模块配置及apache端口</h4><p>将<code>LoadModule php7_module                /usr/local/Cellar/php70/7.0.22_14/libexec/apache2/libphp7.so</code>替换为<code>LoadModule php7_module        /usr/local/Cellar/php70/7.0.22_14/libexec/apache2/libphp7.so</code><br>找到代码块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule dir_module&gt;</div><div class="line">    DirectoryIndex index.html</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule dir_module&gt;</div><div class="line">    DirectoryIndex index.php index.html</div><div class="line">&lt;/IfModule&gt;</div><div class="line"></div><div class="line">&lt;FilesMatch \.php$&gt;</div><div class="line">    SetHandler application/x-httpd-php</div><div class="line">&lt;/FilesMatch&gt;</div></pre></td></tr></table></figure></p>
+<p>修改ServerName为<code>ServerName localhost:8080</code><br><code>Listen:8080</code> apache监听了8080端口，如果修改的话直接改端口号即可。</p>
+<h4 id="修改web服务的根目录在自己用户主目录下方便开发"><a href="#修改web服务的根目录在自己用户主目录下方便开发" class="headerlink" title="修改web服务的根目录在自己用户主目录下方便开发"></a>修改web服务的根目录在自己用户主目录下方便开发</h4><p>找到<code>DocumentRoot &quot;/usr/local/var/www/htdocs&quot;</code>修改为<code>DocumentRoot &quot;/Users/yanhaoqi/sites&quot;</code><br>修改下面的<code>&lt;Directory&gt;</code>为<code>&lt;Directory &quot;/Users/yanhaoqi/sites&quot;&gt;</code><br>修改<code>AllowOverride None</code>为<code>AllowOverride All</code><br>取消注释,使用<code>mod_rewrite</code>模块 <code>LoadModule rewrite_module libexec/mod_rewrite.so</code></p>
+<h4 id="修改用户和用户组"><a href="#修改用户和用户组" class="headerlink" title="修改用户和用户组"></a>修改用户和用户组</h4><p>修改User和Group如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User yanhaoqi</div><div class="line">Group staff</div></pre></td></tr></table></figure></p>
+<h4 id="用户主目录下新建sites目录"><a href="#用户主目录下新建sites目录" class="headerlink" title="用户主目录下新建sites目录"></a>用户主目录下新建sites目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /Users/yanhaoqi</div><div class="line">mkdir sites</div><div class="line">sudo vi sites/index.html</div><div class="line">sudo vi sites/info.php</div></pre></td></tr></table></figure>
+<p>在新建的index.html中编辑<code>&lt;h1&gt;yanhaoqi web root&lt;/h1&gt;</code><br>在新建的info.php中编辑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    phpinfo();</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
+<p>保存退出后重启apache<code>sudo apachectl restart</code><br>访问<code>localhost:8080</code><br><img src="/2017/09/01/mac配置php7运行环境/屏幕快照 2017-09-07 下午5.32.28.png" alt=""><br>访问<code>localhost:8080/info.php</code><br><img src="/2017/09/01/mac配置php7运行环境/屏幕快照 2017-09-07 下午5.36.30.png" alt=""><br>大功告成！几乎热泪盈眶！！！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/31/typecho博客搭建/" rel="next" title="typecho博客搭建">
+                <i class="fa fa-chevron-left"></i> typecho博客搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/01/阿里云服务器ubuntu下配置php运行环境/" rel="prev" title="阿里云服务器ubuntu下配置php运行环境">
+                阿里云服务器ubuntu下配置php运行环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/test.png"
+               alt="闫浩奇" />
+          <p class="site-author-name" itemprop="name">闫浩奇</p>
+           
+              <p class="site-description motion-element" itemprop="description">今夕何夕，遇此良人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mysql"><span class="nav-number">1.</span> <span class="nav-text">安装mysql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apache使用mac自带的"><span class="nav-number">2.</span> <span class="nav-text">apache使用mac自带的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装php7-0"><span class="nav-number">3.</span> <span class="nav-text">安装php7.0</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改php模块配置及apache端口"><span class="nav-number">3.1.</span> <span class="nav-text">修改php模块配置及apache端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改web服务的根目录在自己用户主目录下方便开发"><span class="nav-number">3.2.</span> <span class="nav-text">修改web服务的根目录在自己用户主目录下方便开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改用户和用户组"><span class="nav-number">3.3.</span> <span class="nav-text">修改用户和用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户主目录下新建sites目录"><span class="nav-number">3.4.</span> <span class="nav-text">用户主目录下新建sites目录</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">闫浩奇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
