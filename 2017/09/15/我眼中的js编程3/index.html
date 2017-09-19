@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="函数只能在其所在的作用域内调用吗？怎样在一个函数所在的作用域之外调用该函数？比如下面代码，函数bar定义在函数foo内部，即所在的作用域为函数foo内部，我想在函数foo外部调用bar，直接调用肯定是是报错的，因为外部的作用域访问不到bar。注意，提到函数作用域，要分清楚，函数所在的作用域和函数自身创建的作用域两个概念。因为函数既处在作用域中，同时又创建局部作用域，这两个搞不清下面就没法儿看了。关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我眼中的js编程(3)--深入理解闭包">
+<meta property="og:url" content="http://yoursite.com/2017/09/15/我眼中的js编程3/index.html">
+<meta property="og:site_name" content="闫浩奇 の Blog">
+<meta property="og:description" content="函数只能在其所在的作用域内调用吗？怎样在一个函数所在的作用域之外调用该函数？比如下面代码，函数bar定义在函数foo内部，即所在的作用域为函数foo内部，我想在函数foo外部调用bar，直接调用肯定是是报错的，因为外部的作用域访问不到bar。注意，提到函数作用域，要分清楚，函数所在的作用域和函数自身创建的作用域两个概念。因为函数既处在作用域中，同时又创建局部作用域，这两个搞不清下面就没法儿看了。关">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-19T07:16:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我眼中的js编程(3)--深入理解闭包">
+<meta name="twitter:description" content="函数只能在其所在的作用域内调用吗？怎样在一个函数所在的作用域之外调用该函数？比如下面代码，函数bar定义在函数foo内部，即所在的作用域为函数foo内部，我想在函数foo外部调用bar，直接调用肯定是是报错的，因为外部的作用域访问不到bar。注意，提到函数作用域，要分清楚，函数所在的作用域和函数自身创建的作用域两个概念。因为函数既处在作用域中，同时又创建局部作用域，这两个搞不清下面就没法儿看了。关">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/15/我眼中的js编程3/"/>
+
+
+
+
+
+  <title>我眼中的js编程(3)--深入理解闭包 | 闫浩奇 の Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?e21112ff973b5a3eaa92de69930f064e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">闫浩奇 の Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">愿你出走半生，归来仍是少年</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            全部
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/15/我眼中的js编程3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="闫浩奇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/test.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="闫浩奇 の Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">我眼中的js编程(3)--深入理解闭包</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T11:10:35+08:00">
+                2017-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>函数只能在其所在的作用域内调用吗？怎样在一个函数所在的作用域之外调用该函数？比如下面代码，函数bar定义在函数foo内部，即所在的作用域为函数foo内部，我想在函数foo外部调用bar，直接调用肯定是是报错的，因为外部的作用域访问不到bar。注意，提到函数作用域，要分清楚，函数所在的作用域和函数自身创建的作用域两个概念。因为函数既处在作用域中，同时又创建局部作用域，这两个搞不清下面就没法儿看了。关于函数和变量的声明与访问请看上一篇<a href="">我眼中的js编程(2)</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  function bar()&#123;</div><div class="line">    console.log(&apos;调用了bar&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">bar() // ReferenceError</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>我们可以把bar当做foo的返回值，在bar的作用域外且能访问到foo的地方调用foo，返回bar，然后继续调用。这样就在bar函数所在的作用域外面调用了bar函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  return bar</div><div class="line">  function bar()&#123;</div><div class="line">    console.log(&apos;调用了bar&apos;)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo()() // 调用了bar</div></pre></td></tr></table></figure></p>
+<p>再把代码稍微改一下，猜猜打印a的值是什么呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  return bar // 把函数bar作为返回值进行传递</div><div class="line">  var a = 3</div><div class="line">  function bar ()&#123;</div><div class="line">    console.log(&apos;a的值是&apos;,a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo()() // a的值是 3</div></pre></td></tr></table></figure></p>
+<p>我们在bar所在的作用域之外调用了foo,bar作为返回值被传递到这里，紧接着被调用，并且调用的时候bar依然能够访问它所在的作用域–foo中声明的变量。函数记住并且访问了它所在的作用域！</p>
+<p><strong>闭包的定义：把一个函数作为值传递时，并且在函数所在作用域之外被调用时，函数可以记住并访问它所在的作用域，也就是说被作为值传递的函数持有它所在作用域的引用，闭包就是这个作用域的引用。</strong></p>
+<p>再看一个例子。我们在全局定义一个函数bar，这个函数会调用作为参数传进来的其他函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function bar(fn)&#123;</div><div class="line">  fn()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在我要把一个定义在局部作用域的函数baz作为参数传入bar，通过调用bar来调用baz。这么玩儿肯定报错，因为全局作用域中访问不到baz。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  var a = 5</div><div class="line">  function baz()&#123;</div><div class="line">    console.log(&apos;调用了baz&apos;,a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">bar(baz) // ReferenceError</div></pre></td></tr></table></figure></p>
+<p>但是foo中可以访问全局定义的bar，我们在foo中把baz作为参数传入bar，然后在全局调用foo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">var a = 5</div><div class="line">bar(baz)</div><div class="line">function baz()&#123;</div><div class="line">    console.log(&apos;baz调用了&apos;,a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo() // baz调用了 5</div></pre></td></tr></table></figure></p>
+<p>foo调用的时候，调用了bar，执行baz的调用，函数baz作为参数被传递到bar函数内，然后在函数bar内调用，而baz的作用域是在foo内。函数baz记住并且访问了它的作用域，妈妈，快看呀，闭包又来了！</p>
+<p>另外，如果把代码改成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">bar(baz)</div><div class="line">var a = 5</div><div class="line">function baz()&#123;</div><div class="line">    console.log(&apos;baz调用了&apos;,a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">foo()</div></pre></td></tr></table></figure></p>
+<p>又会输出什么呢？如果把<code>var a = 5</code>换成<code>let a = 5</code>又会怎样呢？答案是<code>undefined</code>和<code>ReferenceError</code>，很有趣。如果不明白就复习上一篇<a href="http://www.jianshu.com/p/cd38b50c200e" target="_blank" rel="external">我眼中的js编程(2)</a>。</p>
+<p>再继续看这样的例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  var a = 5</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(a)</div><div class="line">  &#125;,1000)</div><div class="line">&#125;</div><div class="line">foo() // 1秒钟后打印 5</div></pre></td></tr></table></figure></p>
+<p>函数timer以函数表达式的形式定义在foo内，作为参数传递给工具函数setTimeout，setTimeout持有timer的引用并在1000ms后调用timer，而timer定义在foo内部，持有对自身所在作用域即函数foo内部的引用，也就是闭包，所以可以访问到foo内定义的a，1000ms后打印5。</p>
+<p>再接着看一个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo(name)&#123;</div><div class="line">	document.querySelector(&apos;body&apos;).onclick = function()&#123;</div><div class="line">		console.log(name)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">foo(&apos;hello,closure&apos;) // 每次点击页面某位置时候，打印 hello,closure</div></pre></td></tr></table></figure></p>
+<p>这次是把一个匿名函数传递给了事件函数，当触发click事件调用该函数的时候，闭包又来了！于是我们可以访问到这个匿名函数所在作用域中的变量name(foo的参数name相当于在foo内部执行var name，调用时候如果有实参’hello,closure’，相当于在foo内部最上方执行name = ‘hello,closure’，验证代码如下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function foo(name)&#123;</div><div class="line">  console.log(name)</div><div class="line">&#125;</div><div class="line">foo() // undefined</div><div class="line">foo(&apos;hello,closure&apos;) // &apos;hello,closure&apos;</div></pre></td></tr></table></figure></p>
+<p><strong>怎么样，看了这么多闭包的例子之后发现规律了吗？一个函数作为值进行传递时，并且在函数所在作用域之外被调用时，就产生了闭包！函数持有的对其所在作用域的引用，就是闭包！不论该函数作值被传递，是以返回值的方式、参数的方式、赋值的方式等等任何方式。在定时器、事件监听器、ajax、跨窗口通信、Web Workers中，都有闭包的身影，你会发现，只要是使用了回调函数，实际上都应用了闭包！</strong></p>
+<p>还有一个值得注意的细节。IIFE(立即执行函数)使用闭包了吗？先看这样一个需求，每隔1s输出一次，分别输出1 2 3，看看这样能实现吗？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for(var i=1;i&lt;4;i++)&#123;</div><div class="line">  setTimeout(function timer()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;,1000 * i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样执行的结果是，每隔1s输出一次，分别输出 4 4 4。函数timer作为参数传递给setTimeout，持有自身所在的作用域，即全局作用域，在1s 2s 3s分别被调用的时候，for循环执行完毕，全局作用域中的i此时是4。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for(var i=1;i&lt;4;i++)&#123;</div><div class="line">  (function IIFE(num)&#123;</div><div class="line">    setTimeout(function timer()&#123;</div><div class="line">      console.log(num)</div><div class="line">    &#125;,1000 * num)  </div><div class="line">  &#125;)(i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这次实现了，每隔1s输出一次，分别输出 1 2 3。立即执行函数，顾名思义，js引擎解析到IIFE语句时候就会马上执行，执行完毕后，由于垃圾回收机制，IIFE自身创建的作用域在函数调用完毕后会被立即销毁，再次调用，再次创建新的作用域。也就是说，<strong>IIFE在for循环的每次迭代中都创建一个新的作用域</strong>。这也是在编译之前(写代码的时候)就确定的，只不过在迭代的时候才会创建。</p>
+<p>上面的例子说明，IIFE确实创建了封闭的作用域，但它并没有在自身所在作用域之外被调用，而闭包是一个函数在自身所在作用域之外被调用时候持有的对自身作用域的引用，二者都和作用域有关，<strong>但是我认为IIFE并没有应用到闭包</strong>。普遍认为IIFE是典型的闭包例子，但是我不认同这个观点(参考自《你不知道的javaScript》)。再来看一个例子<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = 5</div><div class="line">(function() foo&#123;</div><div class="line">  console.log(a) // 5</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>很明显，a是通过普通的作用域查找而访问到的。访问a的时候，现在foo函数作用域内查找，找不到a的声明，然后去外层作用域查找。并没有应用到闭包！</p>
+<p>现在我们在进一步思考一下刚才的需求。我们实现的方式就是通过IIFE在for循环的{ }内形成了封闭的作用域，每次迭代都会在{ }内形形成新的作用域。等等，{ }内的作用域？这不就是块作用吗？let声明的变量就有块作用域！于是，看下面的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">for(var i=1;i&lt;4;i++)&#123;</div><div class="line">  let num = i</div><div class="line">  setTimeout(function()&#123;</div><div class="line">    console.log(num)</div><div class="line">  &#125;,1000 * num)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>用let来代替IIFE形成块作用域，同样也实现了！另外，for循环头部let声明的变量还有一个特殊行为，每次迭代都会被绑定到新的块作用域，这个块就是for(){ }的{ }，即for循环头部后面紧跟着的块。所以我们还可以这样写<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for(let i=1;i&lt;4;i++)&#123;</div><div class="line">  setTimeout(function()&#123;</div><div class="line">    console.log(i)</div><div class="line">  &#125;,1000 * i)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>到此为止，我想我们搞清楚了到底什么是闭包，同时也对比了IIFE、块作用域等知识点。点击查看上一篇<a href="">我眼中的js编程(2)</a>点击查看下一篇<a href="">我眼中的js编程(4)</a><br><strong>我眼中的js编程系列是我个人的学习总结，如有错误，烦请包涵、不吝赐教，O(∩_∩)O谢谢</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/12/我眼中的js编程2/" rel="next" title="我眼中的js编程(2)--详解作用域内变量和函数的声明与访问">
+                <i class="fa fa-chevron-left"></i> 我眼中的js编程(2)--详解作用域内变量和函数的声明与访问
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/我眼中的js编程4/" rel="prev" title="我眼中的js编程(4)--关于函数我想说的">
+                我眼中的js编程(4)--关于函数我想说的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/test.png"
+               alt="闫浩奇" />
+          <p class="site-author-name" itemprop="name">闫浩奇</p>
+           
+              <p class="site-description motion-element" itemprop="description">今夕何夕，遇此良人</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">闫浩奇</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
