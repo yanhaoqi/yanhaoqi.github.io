@@ -93,17 +93,20 @@
 
 
 
-<meta name="description" content="在官网http://typecho.org/下载项目文件build。cd到项目所在目录，用命令scp -r build root@101.201.64.108:~上传项目到服务器的root目录，若想上传到其他比如根目录下的home目录下，则scp -r build root@101.201.64.108:/home/。选项-r表示上传整个项目。注意，linux的root目录是根目录下的一个目录。">
+<meta name="description" content="在官网http://typecho.org/下载项目文件build。typecho运行需要php和mysql(或其他数据库)的支持。 本地搭建如果本地没有php运行环境，参考mac配置php7运行环境这篇博客搭建。将下载的build文件夹放在apache web服务的根目录下，我配置的是/Users/yanhaoqi/sites,访问apache服务配置的端口，我配置的localhost:8080">
 <meta property="og:type" content="article">
 <meta property="og:title" content="typecho博客搭建">
 <meta property="og:url" content="http://yoursite.com/2017/08/31/typecho博客搭建/index.html">
 <meta property="og:site_name" content="闫浩奇 の Blog">
-<meta property="og:description" content="在官网http://typecho.org/下载项目文件build。cd到项目所在目录，用命令scp -r build root@101.201.64.108:~上传项目到服务器的root目录，若想上传到其他比如根目录下的home目录下，则scp -r build root@101.201.64.108:/home/。选项-r表示上传整个项目。注意，linux的root目录是根目录下的一个目录。">
+<meta property="og:description" content="在官网http://typecho.org/下载项目文件build。typecho运行需要php和mysql(或其他数据库)的支持。 本地搭建如果本地没有php运行环境，参考mac配置php7运行环境这篇博客搭建。将下载的build文件夹放在apache web服务的根目录下，我配置的是/Users/yanhaoqi/sites,访问apache服务配置的端口，我配置的localhost:8080">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-01T03:25:59.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/08/31/typecho博客搭建/屏幕快照%202017-09-07%20下午6.19.04.png">
+<meta property="og:image" content="http://yoursite.com/2017/08/31/typecho博客搭建/屏幕快照%202017-09-07%20下午6.21.14.png">
+<meta property="og:updated_time" content="2017-09-07T10:22:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="typecho博客搭建">
-<meta name="twitter:description" content="在官网http://typecho.org/下载项目文件build。cd到项目所在目录，用命令scp -r build root@101.201.64.108:~上传项目到服务器的root目录，若想上传到其他比如根目录下的home目录下，则scp -r build root@101.201.64.108:/home/。选项-r表示上传整个项目。注意，linux的root目录是根目录下的一个目录。">
+<meta name="twitter:description" content="在官网http://typecho.org/下载项目文件build。typecho运行需要php和mysql(或其他数据库)的支持。 本地搭建如果本地没有php运行环境，参考mac配置php7运行环境这篇博客搭建。将下载的build文件夹放在apache web服务的根目录下，我配置的是/Users/yanhaoqi/sites,访问apache服务配置的端口，我配置的localhost:8080">
+<meta name="twitter:image" content="http://yoursite.com/2017/08/31/typecho博客搭建/屏幕快照%202017-09-07%20下午6.19.04.png">
 
 
 
@@ -343,7 +346,9 @@
       
 
       
-        <p>在官网<code>http://typecho.org/</code>下载项目文件<code>build</code>。cd到项目所在目录，用命令<code>scp -r build root@101.201.64.108:~</code>上传项目到服务器的root目录，若想上传到其他比如根目录下的home目录下，则<code>scp -r build root@101.201.64.108:/home/</code>。选项<code>-r</code>表示上传整个项目。注意，linux的root目录是根目录下的一个目录。 </p>
+        <p>在官网<code>http://typecho.org/</code>下载项目文件<code>build</code>。typecho运行需要php和mysql(或其他数据库)的支持。</p>
+<h3 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h3><p>如果本地没有php运行环境，参考<code>mac配置php7运行环境</code>这篇博客搭建。将下载的build文件夹放在apache web服务的根目录下，我配置的是<code>/Users/yanhaoqi/sites</code>,访问apache服务配置的端口，我配置的<code>localhost:8080</code>，如图<br><img src="/2017/08/31/typecho博客搭建/屏幕快照 2017-09-07 下午6.19.04.png" alt=""><br>点击build进入安装页面<br><img src="/2017/08/31/typecho博客搭建/屏幕快照 2017-09-07 下午6.21.14.png" alt=""></p>
+<p>cd到项目所在目录，用命令<code>scp -r build root@101.201.64.108:~</code>上传项目到服务器的root目录，若想上传到其他比如根目录下的home目录下，则<code>scp -r build root@101.201.64.108:/home/</code>。选项<code>-r</code>表示上传整个项目。注意，linux的root目录是根目录下的一个目录。 </p>
 
       
     </div>
@@ -440,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/test.png"
@@ -456,7 +470,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -485,6 +499,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地搭建"><span class="nav-number">1.</span> <span class="nav-text">本地搭建</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

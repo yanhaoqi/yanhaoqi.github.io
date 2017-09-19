@@ -93,17 +93,19 @@
 
 
 
-<meta name="description" content="信息量增加超过人的记忆能力（词太多了）  概念的聚类（一词多义）  歧义  上下文  上下文概率模型的失灵  这是语言从产生就有的固有特点（未完待续）">
+<meta name="description" content="js是用来做什么的？ 在浏览器运营环境中，为网页赋予动态行为。怎么实现？ECMAScript(js核心)+浏览器的api。 在node环境中，实现web服务器。怎么实现？ECMAScript(js核心)+node的api。浏览器和web服务器浏览器通过url可以访问任意的服务器的www服务(web服务)。  协议确定浏览器和web服务器的对话方式。服务器的公网ip通过DNS解析为域名，目的是域名比">
 <meta property="og:type" content="article">
-<meta property="og:title" content="每天读书一小时开始了">
-<meta property="og:url" content="http://yoursite.com/2017/08/27/每天读书一小时开始了/index.html">
+<meta property="og:title" content="我眼中的js编程(1)--理解浏览器和web服务">
+<meta property="og:url" content="http://yoursite.com/2017/09/06/我眼中的js编程1/index.html">
 <meta property="og:site_name" content="闫浩奇 の Blog">
-<meta property="og:description" content="信息量增加超过人的记忆能力（词太多了）  概念的聚类（一词多义）  歧义  上下文  上下文概率模型的失灵  这是语言从产生就有的固有特点（未完待续）">
+<meta property="og:description" content="js是用来做什么的？ 在浏览器运营环境中，为网页赋予动态行为。怎么实现？ECMAScript(js核心)+浏览器的api。 在node环境中，实现web服务器。怎么实现？ECMAScript(js核心)+node的api。浏览器和web服务器浏览器通过url可以访问任意的服务器的www服务(web服务)。  协议确定浏览器和web服务器的对话方式。服务器的公网ip通过DNS解析为域名，目的是域名比">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-30T04:54:20.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/09/06/我眼中的js编程1/url.png">
+<meta property="og:updated_time" content="2017-09-19T06:33:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="每天读书一小时开始了">
-<meta name="twitter:description" content="信息量增加超过人的记忆能力（词太多了）  概念的聚类（一词多义）  歧义  上下文  上下文概率模型的失灵  这是语言从产生就有的固有特点（未完待续）">
+<meta name="twitter:title" content="我眼中的js编程(1)--理解浏览器和web服务">
+<meta name="twitter:description" content="js是用来做什么的？ 在浏览器运营环境中，为网页赋予动态行为。怎么实现？ECMAScript(js核心)+浏览器的api。 在node环境中，实现web服务器。怎么实现？ECMAScript(js核心)+node的api。浏览器和web服务器浏览器通过url可以访问任意的服务器的www服务(web服务)。  协议确定浏览器和web服务器的对话方式。服务器的公网ip通过DNS解析为域名，目的是域名比">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/06/我眼中的js编程1/url.png">
 
 
 
@@ -131,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/27/每天读书一小时开始了/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/06/我眼中的js编程1/"/>
 
 
 
 
 
-  <title>每天读书一小时开始了 | 闫浩奇 の Blog</title>
+  <title>我眼中的js编程(1)--理解浏览器和web服务 | 闫浩奇 の Blog</title>
   
 
 
@@ -279,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/27/每天读书一小时开始了/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/我眼中的js编程1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="闫浩奇">
@@ -296,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">每天读书一小时开始了</h1>
+          <h1 class="post-title" itemprop="name headline">我眼中的js编程(1)--理解浏览器和web服务</h1>
         
 
         <div class="post-meta">
@@ -308,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T23:33:50+08:00">
-                2017-08-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T14:09:19+08:00">
+                2017-09-06
               </time>
             
 
@@ -343,7 +345,19 @@
       
 
       
-        <p>信息量增加超过人的记忆能力（词太多了）  概念的聚类（一词多义）  歧义  上下文  上下文概率模型的失灵  这是语言从产生就有的固有特点（未完待续）</p>
+        <h4 id="js是用来做什么的？"><a href="#js是用来做什么的？" class="headerlink" title="js是用来做什么的？"></a>js是用来做什么的？</h4><ul>
+<li>在浏览器运营环境中，为网页赋予动态行为。怎么实现？ECMAScript(js核心)+浏览器的api。</li>
+<li>在node环境中，实现web服务器。怎么实现？ECMAScript(js核心)+node的api。<h4 id="浏览器和web服务器"><a href="#浏览器和web服务器" class="headerlink" title="浏览器和web服务器"></a>浏览器和web服务器</h4>浏览器通过url可以访问任意的服务器的www服务(web服务)。</li>
+</ul>
+<p><img src="/2017/09/06/我眼中的js编程1/url.png" alt=""><br><code>协议</code>确定浏览器和web服务器的对话方式。服务器的<code>公网ip</code>通过DNS解析为<code>域名</code>，目的是域名比ip更好记，通过域名或ip找到服务器。一台服务器上有多种类型、每种类型有多种功能的服务，比如百度搜索、百度翻<br><a id="more"></a><br>译等，通过不同的<code>路径</code>找到不同功能的服务。一台服务器上可以有多种类型的服务如www服务、ftp服务、smtp服务等，服务器上的不同服务分配了不同的<code>端口号</code>来区分，www服务默认80端口，浏览器中url不写端口号则默认访问服务器的80端口。如果服务器上的www服务设置了其他比如7070端口，则在url中要声明访问7070端口<code>https://www.baidu.com:7070/s?tn=590</code>，否则仍然去访问服务器的80端口是没有www服务的。另外，服务端通过80端口与你的电脑通信，但你的电脑用的可能是3456这样的端口。<code>查询字符串</code>是你的电脑向服务器发起www请求时携带的数据。你的电脑发起请求、服务器同意请求、服务器确认收到请求，三次握手后，client和server连接。</p>
+<p>服务器提供www服务，通过浏览器以网页的形式来展示服务。client和server建立连接后，client浏览器会加载html、css、js到用户的浏览器客户端，此时浏览器显示网页，js用来处理服务器响应来的动态数据。服务器的www服务可以用node.js实现，也可以用php、java等其它语言来实现，用来给浏览器的请求响应数据。浏览器端(前端)的js和服务器(后端)的js(或php、java等)都可以处理数据，前者是在用户本地的浏览器客户端处理数据，后者是在远程的服务器处理数据然后再通过网络发送数据到用户的浏览器。<br>那么为什么有的数据在浏览器客户端处理、有的数据需要在服务器处理再发送回浏览器客户端？用浏览器环境的js处理数据基于两种需求：</p>
+<ul>
+<li><p>交互效果。通过js和Browser API来实现各种交互。这个活儿只能浏览器端js来干，因为浏览器只有js引擎(解释器)没有php引擎java引擎。交互效果现在浏览器js的主要功能。</p>
+</li>
+<li><p>处理必要却不重要的功能数据，减少网络请求，提高用户体验。炫酷的交互效果只是锦上添花，但最核心功能才是根本，核心功能相关的数据处理，基本都在服务器端进行，然后通过通过网络响应给浏览器客户端，核心功能的大量数据需要数据库的支持，浏览器环境是没办法支持数据库的，只有在服务器端安装了node环境(或php环境等)，js(或php等)才有读取本地文件的权限和能力，安装了数据库，才能读取并操作数据库文件。浏览器客户端的用户来自各行各业，是不可能装数据库的。当然这是开了个脑洞来阐述为什么需要在服务器端处理数据。但是~~~所有的除去交互效果相关的数据处理都要在服务器进行处理吗？比如电话号码的正则验证这一类，数据量小无需数据库、不需要高安全级别的数据处理，就可以放在浏览器端进行处理。</p>
+</li>
+</ul>
+<p>点击查看下一篇<a href="http://www.jianshu.com/p/cd38b50c200e" target="_blank" rel="external">我眼中的js编程(2)</a><br><strong>我眼中的js编程系列是我个人的学习总结，如有错误，烦请包涵、不吝赐教，O(∩_∩)O谢谢</strong></p>
 
       
     </div>
@@ -380,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/27/好词佳句摘记/" rel="next" title="好词佳句摘记">
-                <i class="fa fa-chevron-left"></i> 好词佳句摘记
+              <a href="/2017/09/05/您的安全性偏好设置仅允许安装来自AppStore和被认可的开发者的应用/" rel="next" title="您的安全性偏好设置仅允许安装来自AppStore和被认可的开发者的应用">
+                <i class="fa fa-chevron-left"></i> 您的安全性偏好设置仅允许安装来自AppStore和被认可的开发者的应用
               </a>
             
           </div>
@@ -390,8 +404,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/29/三闲之人/" rel="prev" title="三闲之人">
-                三闲之人 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/11/在绿皮火车上听着赵雷的歌/" rel="prev" title="在绿皮火车上听着赵雷的歌">
+                在绿皮火车上听着赵雷的歌 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -440,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/test.png"
@@ -485,6 +508,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#js是用来做什么的？"><span class="nav-number">1.</span> <span class="nav-text">js是用来做什么的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器和web服务器"><span class="nav-number">2.</span> <span class="nav-text">浏览器和web服务器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
