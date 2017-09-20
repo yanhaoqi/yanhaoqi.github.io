@@ -349,6 +349,7 @@
         
           <p>vue新手在用<code>vue-cli</code>写项目时候会发现，项目目录下<code>index.html</code>并没有通过<code>&lt;script&gt;&lt;/script&gt;</code>标签引入任何js。<code>index.html</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;/meta charsets=&quot;utf-8&quot;&gt;</div><div class="line">&lt;/meta name=&apos;viewport&apos; content=&apos;width=device-width,user-scalable=no,scalable=1.0&apos;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;body&gt;</div></pre></td></tr></table></figure></p>
 <p>那么页面中的js文件是怎么引入的呢？具体过程，我们可以大概来看一下。</p>
+<p>我们先看下生产环境下的的项目文件是什么样的，执行<code>npm run build</code>，之后webpack会把项目打包到<code>dist</code>目录下，是这个样子：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/21/vue-cli中webpack把js文件引入index-html的过程/#more" rel="contents">
