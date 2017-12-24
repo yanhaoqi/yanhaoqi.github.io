@@ -280,6 +280,118 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/24/又是7天过去了/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="闫浩奇">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/test.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="闫浩奇 の Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/24/又是7天过去了/" itemprop="url">又是7天过去了</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T21:20:04+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>因为换工作、试用期忙、懒、对目前博客系统不满意又找不到好的解决方案等等原因，大概三个月左右没有写博客了。但是想想时间这样周而复始的在不经意间流逝，总是要不断抽空思考些什么、留下点什么吧，迷失在当前觉得一切生活现象和境遇都是那样理所当然的状态里是我不情愿的。终于还是不由自主的想要敲一些文字。平时工作忙、累，周末时候克服一下懒惰还是要尽量坚持写的。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/21/vue-cli中webpack把js文件引入index-html的过程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1322,123 +1434,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/mac配置php7运行环境/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="闫浩奇">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/test.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="闫浩奇 の Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/30/mac配置php7运行环境/" itemprop="url">mac配置php7运行环境</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T11:09:48+08:00">
-                2017-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>不用mac自带的apache和php,安装自己想要的版本。配置过程一直采坑，需要有闲时间和好的心理素质才行，哈哈，因为网上很教程都有纰漏之处，所以先把采坑无数后发现的个人认为最好的一个教程链接放在这里<code>https://github.com/nodejh/nodejh.github.io/issues/25</code>下面记录我的采坑过程。</p>
-<h3 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h3><p>官网<code>https://www.mysql.com/downloads/</code>下载mysql，有问题百度。下载后安装，安装过程中会有一个临时密码的提示，要注意保存一下，后面会用到。安装完毕进入<code>系统偏好设置</code>在最下面找到mysql图标并打开，点击<code>Start MySQL Server</code>启动mysql。命令行cd到<code>/usr/local/mysql/bin</code>，分别执行<code>alias mysql=/usr/local/mysql/bin/mysql</code>和<code>alias mysqladmin=/usr/local/mysql/bin/mysqladmin</code>,这两条命令是为了方便直接打开 iTerm 就可以运行mysql命令，而不是必须进入mysql安装目录才能运行。接下来，重置密码。执行命令<code>mysqladmin -u root -p password ***</code><em>*</em>是你的新密码。回车后提示输入密码，此时数次刚刚保存的临时密码，我的是)6m1d/m&lt;joVi。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/30/mac配置php7运行环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1489,7 +1484,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
