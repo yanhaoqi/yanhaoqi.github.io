@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="全局的BIFprint()set([1,5,2])dict()type()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘a’)st">
+<meta name="description" content="全局的BIFprint()set([1,5,2])dict()type()dir()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python入门常用api记忆总结">
 <meta property="og:url" content="http://yoursite.com/2018/01/18/python入门常用api记忆总结/index.html">
 <meta property="og:site_name" content="闫浩奇 の Blog">
-<meta property="og:description" content="全局的BIFprint()set([1,5,2])dict()type()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘a’)st">
+<meta property="og:description" content="全局的BIFprint()set([1,5,2])dict()type()dir()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-22T14:43:56.000Z">
+<meta property="og:updated_time" content="2018-02-07T10:48:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python入门常用api记忆总结">
-<meta name="twitter:description" content="全局的BIFprint()set([1,5,2])dict()type()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘a’)st">
+<meta name="twitter:description" content="全局的BIFprint()set([1,5,2])dict()type()dir()open()len()help()range()locals()str()sorted([1,5,2])float() 列表的BIFappend()insert(2, ‘a’)extend([1,2[3,4]])pop(2)remove(‘a’)sort() string的BIFsplit(‘:’,2)find(‘">
 
 
 
@@ -343,13 +343,26 @@
       
 
       
-        <h3 id="全局的BIF"><a href="#全局的BIF" class="headerlink" title="全局的BIF"></a>全局的BIF</h3><p>print()<br>set([1,5,2])<br>dict()<br>type()<br>open()<br>len()<br>help()<br>range()<br>locals()<br>str()<br>sorted([1,5,2])<br>float()<br><!----></p>
+        <h3 id="全局的BIF"><a href="#全局的BIF" class="headerlink" title="全局的BIF"></a>全局的BIF</h3><p>print()<br>set([1,5,2])<br>dict()<br>type()<br>dir()<br>open()<br>len()<br>help()<br>range()<br>locals()<br>str()<br>sorted([1,5,2])<br>float()<br><!----></p>
 <h3 id="列表的BIF"><a href="#列表的BIF" class="headerlink" title="列表的BIF"></a>列表的BIF</h3><p>append()<br>insert(2, ‘a’)<br>extend([1,2[3,4]])<br>pop(2)<br>remove(‘a’)<br>sort()</p>
 <h3 id="string的BIF"><a href="#string的BIF" class="headerlink" title="string的BIF"></a>string的BIF</h3><p>split(‘:’,2)<br>find(‘a’)<br>strip()<br>upper()</p>
 <h3 id="os模块的BIF"><a href="#os模块的BIF" class="headerlink" title="os模块的BIF"></a>os模块的BIF</h3><p>os.getcwd()<br>os.chdir()</p>
 <h3 id="pickle模块的BIF"><a href="#pickle模块的BIF" class="headerlink" title="pickle模块的BIF"></a>pickle模块的BIF</h3><p>pickle.dump()<br>pickle.load()</p>
-<h3 id="文件迭代器-数据文件对象-的BIF"><a href="#文件迭代器-数据文件对象-的BIF" class="headerlink" title="文件迭代器(数据文件对象)的BIF"></a>文件迭代器(数据文件对象)的BIF</h3><p>data.readline()<br>data.seek(0)<br>data.close()</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>for item in data:<br>def sayName():<br>if a == 1:<br>elif a == 2:<br>else:<br>import<br>try:<br>except as err:<br>finally:<br>in<br>not in<br>with as’’:<br>new_arr = [func(item) for item in arr]</p>
+<h3 id="string模块的Template类"><a href="#string模块的Template类" class="headerlink" title="string模块的Template类"></a>string模块的Template类</h3><p>s = Template(‘$who likes $what’)<br>s.substitute(who=’yhq’, what=’basketball’)<br>s.safe_substitute(who=’yhq’) 不会有keyError 或 valueError</p>
+<h3 id="文件迭代器-数据文件对象-的BIF"><a href="#文件迭代器-数据文件对象-的BIF" class="headerlink" title="文件迭代器(数据文件对象)的BIF"></a>文件迭代器(数据文件对象)的BIF</h3><p>data.read()<br>data.readline()<br>data.seek(0)<br>data.close()</p>
+<h3 id="http-server模块的HTTPServer和CGIHTTPRequestHandler"><a href="#http-server模块的HTTPServer和CGIHTTPRequestHandler" class="headerlink" title="http.server模块的HTTPServer和CGIHTTPRequestHandler"></a>http.server模块的HTTPServer和CGIHTTPRequestHandler</h3><p>from http.server import HTTPServer, CGIHTTPRequestHandler<br>httpd = HTTPServer((‘’, 8080), CGIHTTPRequestHandler)<br>httpd.server_port<br>http.serve_forever()</p>
+<h3 id="glob模块"><a href="#glob模块" class="headerlink" title="glob模块"></a>glob模块</h3><p>glob.glob(‘data/*.txt’)</p>
+<h3 id="cgitb模块"><a href="#cgitb模块" class="headerlink" title="cgitb模块"></a>cgitb模块</h3><p>cgitb.enable()</p>
+<h3 id="json模块"><a href="#json模块" class="headerlink" title="json模块"></a>json模块</h3><p>json.dumps()<br>json.loads()</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>遍历列表和字典<br>for item in data:<br>def sayName():<br>if a == 1:<br>elif a == 2:<br>else:<br>import<br>try:<br>except as err:<br>finally:<br>in<br>not in<br>with as’’:<br>列表推倒<br>new_arr = [func(item) for item in arr]<br>定义类<br>class Althlete:</p>
+<pre><code># 初始化属性
+def __init__(self,name,age=0):
+    self.name = name
+    self.age = age
+# 其他方法
+def say(name):
+    return &apos;hi,i am&apos; + name 
+</code></pre><p>继承类<br>class NewList(list):<br>    def <strong>init</strong>(self,name):<br>        list.<strong>init</strong>([])<br>        self.name = name<br>    def say(name):<br>        return ‘hi,i am’ + name</p>
 
       
     </div>
@@ -395,6 +408,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/23/但行好事-莫问前程-年终总结/" rel="prev" title="但行好事 莫问前程 --年终总结">
+                但行好事 莫问前程 --年终总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -467,7 +484,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -506,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局的BIF"><span class="nav-number">1.</span> <span class="nav-text">全局的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表的BIF"><span class="nav-number">2.</span> <span class="nav-text">列表的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string的BIF"><span class="nav-number">3.</span> <span class="nav-text">string的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os模块的BIF"><span class="nav-number">4.</span> <span class="nav-text">os模块的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pickle模块的BIF"><span class="nav-number">5.</span> <span class="nav-text">pickle模块的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件迭代器-数据文件对象-的BIF"><span class="nav-number">6.</span> <span class="nav-text">文件迭代器(数据文件对象)的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局的BIF"><span class="nav-number">1.</span> <span class="nav-text">全局的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表的BIF"><span class="nav-number">2.</span> <span class="nav-text">列表的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string的BIF"><span class="nav-number">3.</span> <span class="nav-text">string的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os模块的BIF"><span class="nav-number">4.</span> <span class="nav-text">os模块的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pickle模块的BIF"><span class="nav-number">5.</span> <span class="nav-text">pickle模块的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string模块的Template类"><span class="nav-number">6.</span> <span class="nav-text">string模块的Template类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件迭代器-数据文件对象-的BIF"><span class="nav-number">7.</span> <span class="nav-text">文件迭代器(数据文件对象)的BIF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http-server模块的HTTPServer和CGIHTTPRequestHandler"><span class="nav-number">8.</span> <span class="nav-text">http.server模块的HTTPServer和CGIHTTPRequestHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#glob模块"><span class="nav-number">9.</span> <span class="nav-text">glob模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cgitb模块"><span class="nav-number">10.</span> <span class="nav-text">cgitb模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json模块"><span class="nav-number">11.</span> <span class="nav-text">json模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">12.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
 
           </div>
